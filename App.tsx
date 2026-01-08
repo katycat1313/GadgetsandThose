@@ -56,8 +56,8 @@ const App: React.FC = () => {
       <section className="relative pt-24 pb-16 px-6 text-center overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyan-600/10 blur-[120px] -z-10 rounded-full" />
         <h1 className="text-5xl md:text-7xl font-orbitron font-bold mb-6 leading-tight uppercase tracking-tighter">
-          You didn't Know You Needed <br />
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500">Gadgets and Those Things</span>
+          Gadgets and Those <br />
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500">Things You didn't know You needed</span>
         </h1>
         <p className="max-w-2xl mx-auto text-gray-400 text-lg mb-10 leading-relaxed">
           Curated tech essentials from the <span className="text-white font-bold">@GadgetsAndThose</span> community. 
