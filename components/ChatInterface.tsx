@@ -45,9 +45,9 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ products, onClose }) => {
 
   useEffect(() => {
     const initChat = async () => {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
       const chat = ai.chats.create({
-        model: 'gemini-3-flash-preview',
+        model: 'gemini-2.0-flash-latest',
         config: {
           systemInstruction: getSystemInstruction(products),
           tools: [{ functionDeclarations: [recommendProductTool] }],
@@ -121,9 +121,9 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ products, onClose }) => {
 
     try {
       if (!chatSessionRef.current) {
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
         chatSessionRef.current = ai.chats.create({
-          model: 'gemini-3-flash-preview',
+          model: 'gemini-2.0-flash-latest',
           config: {
             systemInstruction: getSystemInstruction(products),
             tools: [{ functionDeclarations: [recommendProductTool] }],
@@ -144,7 +144,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ products, onClose }) => {
   const startVoiceSession = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
       
       const inputCtx = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 16000 });
       const outputCtx = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });

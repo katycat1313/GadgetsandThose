@@ -1,0 +1,65 @@
+
+{
+  "products": [
+    {
+      "id": "kb-01",
+      "name": "Lumix Mechanical Keyboard",
+      "category": "Tech",
+      "description": "Precision mechanical switches with customizable RGB lighting. Perfect for long coding sessions or competitive gaming.",
+      "price": 129.99,
+      "imageUrl": "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&q=80&w=800",
+      "affiliateUrl": "#",
+      "features": [
+        "Brown Switches",
+        "Hot-swappable",
+        "PBT Keycaps",
+        "Bluetooth 5.0"
+      ]
+    },
+    {
+      "id": "mic-01",
+      "name": "Nexus Pro Mic-Set",
+      "category": "Audio",
+      "description": "Studio-grade cardioid microphone designed for streamers and content creators. Zero-latency monitoring and built-in noise gate.",
+      "price": 159.0,
+      "imageUrl": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=800",
+      "affiliateUrl": "#",
+      "features": [
+        "USB-C Connection",
+        "Gain Control",
+        "Built-in Pop Filter",
+        "Mute Button"
+      ]
+    },
+    {
+      "id": "light-01",
+      "name": "Aura Smart Ring Light",
+      "category": "Visuals",
+      "description": "Adjustable color temperature and brightness. Designed to make you look professional on every TikTok video and Zoom call.",
+      "price": 45.5,
+      "imageUrl": "https://images.unsplash.com/photo-1552168324-d612d77725e3?auto=format&fit=crop&q=80&w=800",
+      "affiliateUrl": "#",
+      "features": [
+        "Phone Holder",
+        "Dimmable 1-100%",
+        "3200K-5600K",
+        "USB Powered"
+      ]
+    },
+    {
+      "id": "pwr-01",
+      "name": "Volt Ultra Power Bank",
+      "category": "Utility",
+      "description": "20,000mAh capacity with super-fast 65W charging. Keeps your mobile production gear running all day without interruption.",
+      "price": 89.99,
+      "imageUrl": "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&q=80&w=800",
+      "affiliateUrl": "#",
+      "features": [
+        "Digital Display",
+        "Laptop Charging",
+        "Dual USB-C",
+        "Portable Design"
+      ]
+    }
+  ]
+}
