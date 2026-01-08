@@ -1,0 +1,33 @@
+
+backend:
+  name: git-gateway
+  branch: main
+  repo: your-github-username/Gadgetsandthose
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "catalog"
+    label: "Inventory Management"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - label: "Master Product List"
+        name: "products"
+        file: "products.json"
+        fields:
+          - label: "All Products"
+            name: "products"
+            widget: "list"
+            summary: "{{name}} - {{price}}"
+            fields:
+              - { label: "Unique ID", name: "id", widget: "string", hint: "Must be unique (e.g., prod-01)" }
+              - { label: "Product Name", name: "name", widget: "string" }
+              - { label: "Category", name: "category", widget: "select", options: ["Tech", "Audio", "Visuals", "Utility", "Gadgets", "Those Things"] }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Price ($)", name: "price", widget: "number", value_type: "float" }
+              - { label: "Image", name: "imageUrl", widget: "image" }
+              - { label: "Affiliate Link", name: "affiliateUrl", widget: "string" }
+              - { label: "Key Features", name: "features", widget: "list", hint: "Add 3-4 bullet points" }

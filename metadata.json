@@ -1,0 +1,8 @@
+
+{
+  "name": "Gadgets and Those - AI Hub",
+  "description": "Premium tech discovery platform for the Gadgets and Those TikTok community.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
