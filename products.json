@@ -1,29 +1,27 @@
-
 {
   "products": [
     {
-      "id": "kb-01",
-      "name": "Lumix Mechanical Keyboard",
+      "id": "A-01",
+      "name": "Biometric Gun Safe for Pistols",
       "category": "Tech",
-      "description": "Precision mechanical switches with customizable RGB lighting. Perfect for long coding sessions or competitive gaming.",
-      "price": 129.99,
-      "imageUrl": "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&q=80&w=800",
-      "affiliateUrl": "#",
+      "description": "BILLCONCH Biometric Gun Safe\nInstant fingerprint access. Military-grade protection.\n⚡ Unlock in seconds with biometric tech, PIN, or backup key\n🔒 Hard carbon steel — built like a bank vault\n💡 LED interior lighting for instant visibility\n🚗 Fits bedside, nightstand, closet, or car",
+      "imageUrl": "https://m.media-amazon.com/images/I/81R2ISmL3vL._AC_SL1500_.jpg",
+      "affiliateUrl": "https://amzn.to/4aT3OOK",
       "features": [
-        "Brown Switches",
-        "Hot-swappable",
-        "PBT Keycaps",
-        "Bluetooth 5.0"
+        "Lock Type    Biometric, Electronic Combination Lock",
+        "Additional Features    Portable",
+        "Mounting Type    Freestanding, Tabletop",
+        "Control Type    Key Control",
+        "Water Resistance Level    Not Water Resistant"
       ]
     },
     {
-      "id": "mic-01",
-      "name": "Nexus Pro Mic-Set",
-      "category": "Audio",
-      "description": "Studio-grade cardioid microphone designed for streamers and content creators. Zero-latency monitoring and built-in noise gate.",
-      "price": 159.0,
-      "imageUrl": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=800",
-      "affiliateUrl": "#",
+      "id": "A-02",
+      "name": "R.W.FLAME 68 inch Recessed and Wall Mounted Electric Fireplace",
+      "category": "Heater",
+      "description": "Transform any room into a cozy retreat with this sleek 68-inch electric fireplace insert. The ultra-slim design (only 3.86\" deep) fits seamlessly into your space while delivering powerful zone heating up to 400 square feet. Choose from 12 stunning flame colors and customize brightness to match your mood. ETL safety certified with overheat protection and natural humidity preservation - no dry air discomfort. Energy-efficient dual heating modes (750W/1500W) let you stay warm without breaking the bank. Perfect for living rooms, bedrooms, or offices. Installation is simple, operation is effortless with both touchscreen and remote control.",
+      "imageUrl": "https://m.media-amazon.com/images/I/51kuaq1BEeL._AC_SL1172_.jpg",
+      "affiliateUrl": "https://amzn.to/4sL1GPG",
       "features": [
         "USB-C Connection",
         "Gain Control",
@@ -32,33 +30,34 @@
       ]
     },
     {
-      "id": "light-01",
-      "name": "Aura Smart Ring Light",
-      "category": "Visuals",
-      "description": "Adjustable color temperature and brightness. Designed to make you look professional on every TikTok video and Zoom call.",
-      "price": 45.5,
-      "imageUrl": "https://images.unsplash.com/photo-1552168324-d612d77725e3?auto=format&fit=crop&q=80&w=800",
-      "affiliateUrl": "#",
+      "id": "A-03",
+      "name": "LUXE Bidet NEO 120 ",
+      "category": "Bathroom",
+      "description": "Upgrade your bathroom with premium comfort and sustainability. This sleek bidet attachment features high-pressure valves with metal-ceramic cores, durable steel hoses, and self-retracting nozzles with hygienic guard gate protection. Installs in minutes on any standard two-piece toilet with all tools included. Save money on toilet paper, reduce environmental impact, and enjoy a gentler, cleaner experience every day.",
+      "imageUrl": "https://m.media-amazon.com/images/I/61+niaxtE4L._AC_SL1500_.jpg",
+      "affiliateUrl": "https://amzn.to/4pFLQTs",
       "features": [
-        "Phone Holder",
-        "Dimmable 1-100%",
-        "3200K-5600K",
-        "USB Powered"
+        "Retractable nozzles, protective guard gate, and built to fit most toilet setups.",
+        "Slide-in Installation, Advanced 360° Self-Clean Mode, and Lift-to-Clean Hinges.",
+        "Doft-close, quick-release, and designed to fit any bidet attachment."
       ]
     },
     {
-      "id": "pwr-01",
-      "name": "Volt Ultra Power Bank",
+      "id": "A-04",
+      "name": "Moen Flo Smart Water Monitor and Automatic Shutoff Sensor, Wi-Fi Connected Water Leak Detector for 1-Inch Diameter Pipe, 900-006",
       "category": "Utility",
-      "description": "20,000mAh capacity with super-fast 65W charging. Keeps your mobile production gear running all day without interruption.",
-      "price": 89.99,
-      "imageUrl": "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&q=80&w=800",
-      "affiliateUrl": "#",
+      "description": "Protect your home from burst pipes and costly water damage with the Moen Smart Water Shutoff system. This intelligent device automatically detects leaks and shuts off your water supply before disaster strikes—especially critical during winter when frozen pipes are most vulnerable. Get instant alerts on your phone and control your water from anywhere. Professional installation recommended for 1" to 1-1/4" pipes.",
+      "imageUrl": "https://m.media-amazon.com/images/I/61oF2ls8ZJL._AC_SL1500_.jpg",
+      "affiliateUrl": "https://amzn.to/49nZFBj",
       "features": [
-        "Digital Display",
-        "Laptop Charging",
-        "Dual USB-C",
-        "Portable Design"
+        "Power Source AC",
+        "Compatible Devices Smartphone, Tablet",
+        "Battery Description requires ac power",
+        "Number of Batteries 1 AA batteries required.",
+        "Voltage 12 Volts",
+        "Control Method Voice",
+        "Mounting Type Wall Mount",
+        "Sensor Technology Flow Sensor"
       ]
     }
   ]
