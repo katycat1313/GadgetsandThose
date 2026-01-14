@@ -1,0 +1,70 @@
+/*
+ * =============================================
+ * --- Global & Root Level Styles ---
+ * =============================================
+ *
+ * These are base styles that apply sitewide.
+ */
+
+/* General body styles for better typography and a smoother look. */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/*
+ * =============================================
+ * --- Custom Scrollbar ---
+ * =============================================
+ *
+ * A subtle, dark-themed scrollbar that fits the site's aesthetic.
+ * This is a progressive enhancement and will only show on webkit-based browsers.
+ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #030712; 
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+
+/*
+ * =============================================
+ * --- Animations & Accessibility ---
+ * =============================================
+ *
+ * Re-usable animations and accessibility improvements.
+ */
+
+/* A simple pulse animation, good for loading states or notifications. */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* 
+ * A clear, high-contrast focus style for keyboard navigators.
+ * This is crucial for accessibility.
+ */
+:focus-visible {
+  outline: 2px solid #22d3ee; /* cyan-400 */
+  outline-offset: 2px;
+  border-radius: 4px;
+}

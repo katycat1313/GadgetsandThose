@@ -8,17 +8,27 @@ const App: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // On mount, we try to fetch the product catalog.
+    // This is the core data for the app, so we handle loading and error states
+    // to give the user feedback if the network is slow or if something goes wrong.
     fetch('./products.json')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch catalog');
+        return res.json();
+      })
       .then(data => {
+        // The data could be an object with a 'products' key or just an array.
+        // This makes the data loading a bit more robust.
         const productList = data.products || (Array.isArray(data) ? data : []);
         setProducts(productList);
         setIsLoading(false);
       })
       .catch(err => {
         console.error("Failed to load products:", err);
+        setError("Unable to sync product catalog. Please try again later.");
         setIsLoading(false);
       });
   }, []);
@@ -90,6 +100,10 @@ const App: React.FC = () => {
           <div className="flex flex-col items-center justify-center py-20 gap-4">
             <div className="w-12 h-12 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin" />
             <span className="text-xs font-bold text-cyan-500 uppercase tracking-widest animate-pulse">Syncing Catalog...</span>
+          </div>
+        ) : error ? (
+          <div className="flex justify-center py-20 text-center">
+            <p className="text-red-400 font-orbitron tracking-widest uppercase text-sm">{error}</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

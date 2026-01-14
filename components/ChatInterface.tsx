@@ -29,6 +29,43 @@ const recommendProductTool: FunctionDeclaration = {
   },
 };
 
+/**
+ * A simple, "human-like" search function to find relevant products.
+ * Instead of complex embeddings, this uses a weighted keyword search, which is fast,
+ * easy to understand, and feels more like how a person might quickly scan a catalog.
+ */
+const findRelevantProducts = (query: string, allProducts: Product[]): Product[] => {
+  const queryWords = query.toLowerCase().split(/\s+/).filter(w => w.length > 2);
+  if (queryWords.length === 0) return [];
+
+  const scores: { [id: string]: number } = {};
+
+  allProducts.forEach(product => {
+    let score = 0;
+    
+    // Check for matches in different fields and apply a "human" weight.
+    // A match in the name is a strong signal, whereas a match in the description is less so.
+    queryWords.forEach(word => {
+      if (product.name.toLowerCase().includes(word)) score += 5; // Strong match
+      if (product.category.toLowerCase().includes(word)) score += 3; // Good match
+      if (product.features.join(' ').toLowerCase().includes(word)) score += 2; // Okay match
+      if (product.description.toLowerCase().includes(word)) score += 1; // Weak match
+    });
+
+    if (score > 0) {
+      scores[product.id] = score;
+    }
+  });
+
+  // Sort by the highest score and return the top 3.
+  const sortedProductIds = Object.keys(scores).sort((a, b) => scores[b] - scores[a]);
+  
+  return sortedProductIds
+    .slice(0, 3)
+    .map(id => allProducts.find(p => p.id === id))
+    .filter((p): p is Product => !!p);
+};
+
 const ChatInterface: React.FC<ChatInterfaceProps> = ({ products, onClose }) => {
   const [mode, setMode] = useState<ChatMode>('text');
   const [messages, setMessages] = useState<(Message & { recommendation?: Product; reason?: string })[]>([]);
@@ -120,6 +157,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ products, onClose }) => {
     setIsTyping(true);
 
     try {
+      // Lazy-initialize the chat session on the first message.
       if (!chatSessionRef.current) {
         const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
         chatSessionRef.current = ai.chats.create({
@@ -131,7 +169,22 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ products, onClose }) => {
         });
       }
 
-      const response = await chatSessionRef.current.sendMessage({ message: userMsg });
+      // Find relevant products to give the AI more context.
+      const relevantProducts = findRelevantProducts(userMsg, products);
+      let augmentedUserMessage = userMsg;
+
+      // If we found any relevant products, we'll augment the user's prompt
+      // with this context. This helps the AI make smarter recommendations
+      // without having to re-initialize the whole chat with a new system prompt.
+      if (relevantProducts.length > 0) {
+        const productContext = relevantProducts
+          .map(p => `- ID: ${p.id}, Name: ${p.name}, Desc: ${p.description}`)
+          .join('\n');
+        
+        augmentedUserMessage = `Based on my query, I found these potentially relevant products in your catalog:\n${productContext}\n\nPlease consider this context when answering my query: "${userMsg}"`;
+      }
+
+      const response = await chatSessionRef.current.sendMessage({ message: augmentedUserMessage });
       processAiResponse(response);
     } catch (error) {
       console.error(error);
