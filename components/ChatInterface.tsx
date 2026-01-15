@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Message, ChatMode, Product } from '../types';
-import { getSystemInstruction } from '../constants';
 
 interface ChatInterfaceProps {
   products: Product[];
@@ -13,11 +12,29 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ products, onClose }) => {
   const [messages, setMessages] = useState<(Message & { recommendation?: Product; reason?: string })[]>([]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [isVoiceActive, setIsVoiceActive] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const voiceSessionRef = useRef<any>(null);
   const audioContextRef = useRef<{ input: AudioContext; output: AudioContext } | null>(null);
 
+  const processAiResponse = (text: string) => {
+    // Regex to find product IDs like A-01, A-02, etc.
+    const idRegex = /([A-Z]-\d{2})/g;
+    const matches = [...text.matchAll(idRegex)];
+
+    if (matches.length > 0) {
+      const match = matches[0];
+      const productId = match[1];
+      const product = products.find(p => p.id === productId);
+
+      if (product) {
+        const reasoningPart = text.split(productId)[1] || "";
+        addMessage('assistant', text, product, reasoningPart.trim());
+        return;
+      }
+    }
+
+    addMessage('assistant', text);
+  };
 
   useEffect(() => {
     const initChat = async () => {
@@ -31,12 +48,13 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ products, onClose }) => {
           }),
         });
 
-        if (!response.ok) throw new Error('API Error');
+        if (!response.ok) {
+          const err = await response.json();
+          throw new Error(err.error || 'API Error');
+        }
         const data = await response.json();
-
-        // Extract content from Gemini response format
         const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-        addMessage('assistant', text);
+        processAiResponse(text);
       } catch (e) {
         addMessage('assistant', "Hey! Gadget Scout here. What are we optimizing today?");
       } finally {
@@ -82,26 +100,22 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ products, onClose }) => {
         body: JSON.stringify({ prompt: userMsg }),
       });
 
-      if (!response.ok) throw new Error('API Error');
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.error || 'API Error');
+      }
       const data = await response.json();
-
       const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-
-      // Basic recommendation detection if the LLM includes an ID in the text
-      // Note: The function logic handles RAG, so results are context-aware.
-      addMessage('assistant', text);
-    } catch (error) {
+      processAiResponse(text);
+    } catch (error: any) {
       console.error(error);
-      addMessage('assistant', "I hit a snag in the comms. What was that again?");
+      addMessage('assistant', `I hit a snag: ${error.message || "What was that again?"}`);
     } finally {
       setIsTyping(false);
     }
   };
 
-  const startVoiceSession = async () => {
-    // Voice session requires a direct client-side API key which is currently causing security blocks.
-    // Calling server-side functions for real-time audio is significantly more complex.
-    // For now, we revert to text mode to ensure the site can build and deploy safely.
+  const startVoiceSession = () => {
     alert("Voice Discovery is currently undergoing a security update. Please use Text Discovery for now!");
     setMode('text');
   };
@@ -112,7 +126,6 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ products, onClose }) => {
       audioContextRef.current.input.close();
       audioContextRef.current.output.close();
     }
-    setIsVoiceActive(false);
   };
 
   const toggleMode = () => {
@@ -132,7 +145,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ products, onClose }) => {
     <div className="fixed inset-0 z-50 flex flex-col md:right-8 md:bottom-8 md:inset-auto md:w-[480px] md:h-[650px] glass rounded-2xl shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-300">
       <div className="p-4 border-b border-white/10 flex justify-between items-center bg-gray-950/50 rounded-t-2xl">
         <div className="flex items-center gap-3">
-          <div className={`w-3 h-3 rounded-full ${isVoiceActive ? 'bg-cyan-400 animate-pulse' : 'bg-blue-500'}`} />
+          <div className={`w-3 h-3 rounded-full ${mode === 'voice' ? 'bg-cyan-400 animate-pulse' : 'bg-blue-500'}`} />
           <div className="flex flex-col">
             <span className="font-orbitron text-[10px] font-bold tracking-widest text-white uppercase leading-none">G&T Scout Hub</span>
             <span className="text-[9px] text-cyan-400 font-bold tracking-[0.2em] uppercase opacity-70 mt-1">{mode} LINKED</span>
