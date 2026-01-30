@@ -24,6 +24,7 @@ This is the official product discovery platform for the **@GadgetsAndThose** Tik
 - **Agentic Scouting**: The AI doesn't just sell; it analyzes user setups and provides reasoning.
 - **Proactive Engagement**: Greets users with a "Deal of the Day" as soon as they open the chat.
 - **Dual-Mode**: Seamlessly switch between typing and a natural voice conversation.
+<img width="1470" height="956" alt="Screenshot 2026-01-30 at 3 45 00 PM" src="https://github.com/user-attachments/assets/7a941dd0-4c67-4871-8bb0-e3e43a2aafcf" />
 
 ## 🛠 Tech Stack
 - **Frontend**: React + Tailwind CSS
